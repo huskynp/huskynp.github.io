@@ -1,0 +1,121 @@
+body{
+    font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+    "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+    margin:0;
+}
+html, body{
+    width:100vw;
+    min-height:100%;
+}
+
+a{
+    text-decoration: none;
+    color:skyblue;
+}
+
+#projects{
+    visibility:hidden;
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    top:0;
+    background-color: white;
+    overflow-y:scroll;
+    scrollbar-width:0;
+}
+
+#projects::-webkit-scrollbar{
+    display:none;
+}
+
+main{
+    width:100%;
+    height:100vh;
+}
+
+footer{
+    background-color:black;
+    color:white;
+}
+
+footer p{
+    padding: 2.5vh 0;
+    text-align:center;
+    margin:0;
+}
+
+.definition{
+    width:100vw;
+    height:100vh;
+    background-color:white;
+    visibility: hidden;
+}
+
+header{
+    margin:0;
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display:flex;
+    flex-direction:column;
+}
+header span{
+    display:inline-flex;
+    gap:1em;
+    align-items: end;
+    margin-top:2em;
+    font-size:x-large;
+}
+header i.title{
+        font-family: 'Times New Roman', Times, serif;
+        font-size:64px;
+        margin-bottom:-1vh;
+}
+
+header > p.subtitle{
+    font-size:clamp(min(3vw,36px),3vw,36px);
+    padding-bottom:0;
+    margin-top:3vh;
+    margin-bottom:-2vh;
+}
+
+header > button{
+    margin-top:4vh;
+    background-color:white;
+    border: none;
+    align-self:center;
+    color:black;
+    padding:1em;
+    cursor:pointer;
+    transition:1s;
+    font-size:large;
+}
+
+header > button:hover{
+    background-color:black;
+    color:white;
+}
+
+header > p.mine{ color: limegreen; }
+
+.madeby{
+    width:100vw;
+    height:100vh;
+    margin: 0;  
+    padding:0;
+    background-color:black;
+    position:absolute;
+    top:0;
+    display:none;
+    line-height:100vh;
+    text-align: center;
+}
+
+.madeby h1{
+    color:white;
+    margin:0;
+    font-weight:lighter;
+    display:none;
+}
