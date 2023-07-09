@@ -6,25 +6,32 @@ $("#soundtrack").get(0).volume = 0;
 const tags = { // [name, color]
     "space": ["space ✨", "rgb(20, 20, 44)"],
     "js": ["javascript", "orange"],
+    "html": ["html", "crimson"],
     "mobile": ["mobile 📱", "coral"],
     "map": ["mapbox 🌎", "lightgreen"],
     "neuro": ["neuroscience 🧠", "skyblue"],
     "raspi": ["raspberry pi 💾", "red"],
-    "ai": ["ai 🤖", "purple"]
+    "ai": ["ai 🤖", "purple"],
+    "game": ["games 🎮", "limegreen"],
+    "api": ["rest 🌐", "royalblue"],
+    "mongo": ["mongodb 🍃", "darkgreen"],
+    "css": ["css 🎨", "dodgerblue"],
+    "data": ["data 📒", "grey"],
+    "python": ["python 🐍", "black"],
+    "net": ["networking 📶", "coral"],
 }
 
 const playLobby = (play) => { // called after setTimeout
     let obj = $("#soundtrack");
+    obj.stop(true, true)
     if(play){
         let to = 1500;
         if(play===3) to=0; // from button, no delay
         setTimeout(() => {
         obj.get(0).play();
-        obj.stop(true, true)
-        obj.animate({volume:0.2}, 1000); }, to);
+        obj.animate({volume:0.2}, 2000); }, to);
     }else{
-        obj.stop(true, true)
-        obj.animate({volume:0}, 1000, () => {obj.get(0).pause();});
+        obj.animate({volume:0}, 2000, () => {obj.get(0).pause();});
     }
 }
 
@@ -42,6 +49,7 @@ export class Accordion extends LitElement{
         link:"https://github.com/huskynp",
         date:"",
         tags:"",
+        unloop: "",
     }
 
     constructor(){
@@ -67,10 +75,12 @@ export class Accordion extends LitElement{
     }
     .thumb{
         height:100%;
+        max-width: max(10vh,6vw);
         margin-right:5vw;
         border-right:min(3px, 0.5vw) solid var(--textColor);
         transition: border 1s ease-out;
         background-color:white;
+        object-fit:cover;
     }
     h3{
         font-family: 'IBM Plex Mono', monospace;
@@ -147,8 +157,9 @@ export class Accordion extends LitElement{
         display:block;
         margin-left:auto;
         height:100%;
-        max-width:100%;
+        max-width:97%;
         border-radius:5px;
+        object-fit:cover;
     }
     
     :not(.active) > .rightPanel > .panelIMG{
@@ -187,6 +198,7 @@ export class Accordion extends LitElement{
     }
 
     toggle(){
+        $(".bgAudio").prop("loop", (this.unloop === undefined))
         this.toggled = !this.toggled;
         let c = "black";
         $("video").removeClass("playing");
@@ -250,6 +262,13 @@ $(".playMusic").on("click", () => {
     $(".playMusic").text((playingMusic ? "pause some music..." : "play some music..."));
     playLobby((playingMusic ? 3 : false));
 })
+
+let dur = 283; // length of bg music, set manually
+setInterval(() => {
+    // update audio progress bar
+    if(!playingMusic){ return; }
+    $("#musicProgress").val(document.getElementById("soundtrack").currentTime/dur)
+}, 3000);
 
 if(localStorage.getItem("introed") === "true"){
     $("#projects").css('visibility','visible');

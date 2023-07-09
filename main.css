@@ -67,7 +67,31 @@ main{
 .playMusic{
     text-decoration: underline;
     cursor: pointer;
+    margin-bottom: 0;
 }
+
+#musicProgress[value]{
+    -webkit-appearance: none;
+    margin-top:2vh;
+    width:12em;
+    height:0.5em;
+}
+
+#musicProgress[value]::-webkit-progress-bar{
+    background-color: lightgrey;
+    border-radius:50px;
+}
+
+#musicProgress[value]::-webkit-progress-value{
+    background-color:grey;
+    border-radius: 50px;
+}
+
+ #musicProgress::-moz-progress-bar{ /* compatibility */
+    background-color: grey;
+    border-radius: 50px;
+ }
+
 
 .accordions{
     position:relative;
@@ -125,6 +149,11 @@ footer hr{
     height:100vh;
     background-color:white;
     visibility: hidden;
+}
+
+.construction{
+    width:100%;
+    margin-bottom:1rem;
 }
 
 header{
