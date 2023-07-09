@@ -267,7 +267,7 @@ let dur = 283; // length of bg music, set manually
 setInterval(() => {
     // update audio progress bar
     if(!playingMusic){ return; }
-    $("#musicProgress").val(document.getElementById("soundtrack").currentTime/dur)
+    $("#musicProgress").val(Math.max(document.getElementById("soundtrack").currentTime/dur,0.04));
 }, 3000);
 
 if(localStorage.getItem("introed") === "true"){
@@ -285,9 +285,8 @@ $("#definitionComplete").on('click',() => {
             $(".madeby>h1").fadeIn(2000, () => [
                 setTimeout(() => {
                     $(".madeby>h1").fadeOut(1500, () =>{ 
-                        $(".madeby").fadeOut(2000, () => {
-                            $("#projects").css("visibility",'visible');
-                        });
+                        $(".madeby").fadeOut(2000);
+                        $("#projects").css('visibility', 'visible');
                     })
                 }, 2000)
             ])
