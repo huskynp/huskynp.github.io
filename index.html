@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>huskynp</title>
+    <title>résumé</title>
     <link rel="icon" href="favicon.png"/>
     <link rel="stylesheet" href="main.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
     <script type="module" src="main.js"></script>
 </head>
@@ -26,7 +29,36 @@
     <div class="madeby"><h1>Made by Hrishi Patil</h1></div>
     <div id="projects">
         <main>
-
+            <video muted loop playsinline class="bgVideo1">
+                <source />
+            </video>
+            <video muted loop playsinline class="bgVideo2">
+                <source />
+            </video>
+            <p class="goback">← go back</p>
+            <p class="mute">mute</p>
+            <div class="centerfold">
+                <h1 class="secondTitle">resume</h1>
+                <p class="playMusic">play some music...</p>
+            </div>
+            <audio loop id="soundtrack">
+                <source src="soundtrack.mp3" />
+            </audio>
+            <audio loop class="bgAudio">
+                <source src="videos/storm.mp3">
+            </audio>
+            <div class="accordions">
+                <project-accordion name="astro-viewer" image="images/pulsar.png" tags="space js mobile" desc="The world's most powerful telescopes, available on your phone. See space like never before." date="June 2023" link="https://huskynp.github.io/astro-viewer/" audio="videos/space.mp3" video="videos/space.mp4" textColor="white" thumb="/images/astroviewer.jpg"></project-accordion>
+                <project-accordion name="Disaster Map" image="images/volcano.png" tags="map js" desc="An interactive 3D map of natural disasters around the world, using data from NASA." date="April 2022" link="https://huskynp.github.io/disaster-map/" audio="videos/storm.mp3" video="videos/storm.mp4" textColor="white" thumb="/images/disaster map.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap, easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+                <project-accordion name="Brain-Computer Interface" image="images/bci.png" tags="neuro raspi ai" desc="Detecting brain signals using a cheap easily-made EEG (mind-reading) machine. Research paper included!" date="Spring 2023" link="https://github.com/huskynp/bci" audio="videos/brain.mp3" video="videos/brain.mp4" textColor="white" thumb="/images/brain.png"></project-accordion>
+            </div>
         </main>
         <footer>
             <hr>

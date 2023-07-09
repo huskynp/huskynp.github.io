@@ -23,6 +23,7 @@ a{
     background-color: white;
     overflow-y:scroll;
     scrollbar-width:0;
+    
 }
 
 #projects::-webkit-scrollbar{
@@ -31,18 +32,92 @@ a{
 
 main{
     width:100%;
-    height:100vh;
+    min-height:100vh;
+    padding-bottom:10vh;
+}
+
+.goback, .mute, .centerfold{
+    color:var(--textColor);
+    transition: color 1s ease-out; 
+    position:absolute;
+    top:0;
+    user-select: none;
+}
+
+.goback{
+    left:1em;
+    cursor:pointer;
+    font-weight:500;
+}
+
+.mute{
+    right:1em;
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+.centerfold{
+    
+    width:100%;
+    text-align:center;
+}
+.secondTitle{
+    font-size:8vh;
+}
+.playMusic{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.accordions{
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    margin-top:40vh;
+    align-items: center;
+}
+
+.bgVideo1, .bgVideo2{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    opacity:0;
+    transition: opacity 1s ease-out;
+    filter: brightness(50%);
+    pointer-events:none;
+}
+
+.playing{
+    opacity:1;
+}
+
+:root{
+    --textColor: black;
+    --bgColor: transparent;
+}
+
+.panel{
+    width:100%;
 }
 
 footer{
     background-color:black;
     color:white;
+    position:relative;
 }
 
 footer p{
     padding: 2.5vh 0;
     text-align:center;
     margin:0;
+}
+
+footer hr{
+    color:white;
+    margin-top:0;
 }
 
 .definition{
