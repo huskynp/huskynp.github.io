@@ -31,7 +31,8 @@ const playLobby = (play) => { // called after setTimeout
         obj.get(0).play();
         obj.animate({volume:0.2}, 2000); }, to);
     }else{
-        obj.animate({volume:0}, 2000, () => {obj.get(0).pause();});
+        obj.animate({volume:0}, 2000);
+        setTimeout(() => {obj.get(0).pause();}, 2000);
     }
 }
 
@@ -50,6 +51,7 @@ export class Accordion extends LitElement{
         date:"",
         tags:"",
         unloop: "",
+        bg:"",
     }
 
     constructor(){
@@ -62,6 +64,7 @@ export class Accordion extends LitElement{
         cursor:pointer;
         user-select:none;
         width: calc(min(60vw,1000px) - 3px);
+        position: relative;
     }
     .opener{
         max-width:100%;
@@ -84,7 +87,7 @@ export class Accordion extends LitElement{
     }
     h3{
         font-family: 'IBM Plex Mono', monospace;
-        font-size:max(3vh,2vw);
+        font-size:max(1.6vh,2vw);
         color: var(--textColor);
         transition: color 1s ease-out;
     }
@@ -95,6 +98,7 @@ export class Accordion extends LitElement{
         font-size:2em;
         margin-left:auto;
         margin-right:5%;
+        padding:0;
         cursor:pointer;
         transition:0.5s ease-out all;
         color: var(--textColor);
@@ -118,7 +122,7 @@ export class Accordion extends LitElement{
     .panel.active{
         border:2px solid var(--textColor);
         padding:2vh;
-        max-height:20vh;
+        max-height:50vh;
         transition: max-height 1s ease-in-out;
     }
 
@@ -148,29 +152,39 @@ export class Accordion extends LitElement{
         width:100%;
     }
 
+    
     .rightPanel{
         width:25%;
         height:20vh;
+        display:flex;
+        align-items:center;
     }
 
     .panelIMG{
         display:block;
         margin-left:auto;
-        height:100%;
         max-width:97%;
+        max-height:97%;
         border-radius:5px;
         object-fit:cover;
+        cursor:pointer;
     }
     
     :not(.active) > .rightPanel > .panelIMG{
         opacity:0;
     }
 
+    .tags{
+        display:inline-block;
+        line-height:2.5em;
+    }
+    
     .tag{
         font-size:1.5vh;
         padding: .5em;
         border-radius:7px;
         margin-right:0.5em;
+        white-space: nowrap;
     }
     `;
 
@@ -194,6 +208,7 @@ export class Accordion extends LitElement{
         playLobby(false);
         $(".bgAudio").stop(true, true);
         $(".bgAudio").animate({volume:0.2}, 1000);
+        setTimeout(() => {$(".bgAudio").get(0).play()}, 1000); // doing this for ios
 
     }
 
@@ -203,13 +218,16 @@ export class Accordion extends LitElement{
         let c = "black";
         $("video").removeClass("playing");
         if(this.toggled){
+            $("body").css("background-color",this.bg);
             c = this.textColor;
             this.playVideo();
             $("project-accordion").not(`[name='${this.name}']`).prop("toggled", false);
         }else{
+            $("body").css("background-color","white");
             playLobby(playingMusic);
             $(".bgAudio").stop(true, true);
             $(".bgAudio").animate({volume:0}, 1000);
+            setTimeout(() => {$(".bgAudio").get(0).pause()}, 1000);
         }
         document.querySelector(":root").style.setProperty("--textColor", c);
     }
@@ -220,6 +238,12 @@ export class Accordion extends LitElement{
             let [n, c] = tags[tag];
             return html`<span class="tag" style="background-color: ${c};">${n}</span>`
         })
+    }
+
+    showDialog(){
+        $("dialog").css("background-color",$("body").css("background-color"));
+        $("dialog > img").attr("src", this.image);
+        $("dialog").get(0).showModal();
     }
 
     render(){
@@ -233,10 +257,10 @@ export class Accordion extends LitElement{
             <div class="leftPanel">
                 <p class="description">   ${this.desc}</p>
                 <p>Date: <b>${this.date}</b></p>
-                <p>Tags: <b>${this.calcTags()}</b></p>
+                <p class="tags">Tags: <b>${this.calcTags()}</b></p>
                 <a target="_blank" rel="noopener noreferrer" href="${this.link}">Check it out</a>
             </div>
-            <div class="rightPanel"><img class="panelIMG" src="${this.image}"/></div>
+            <div class="rightPanel"><img @click="${this.showDialog}" class="panelIMG" src="${this.image}"/></div>
         </div>
         `
     }
@@ -252,11 +276,12 @@ let muted = false;
 $(".mute").on("click", () => {
     muted = !muted;
     $(".mute").text((muted ? "unmute" : "mute"));
-    $("audio").get(0).muted = muted;
+    $(".bgAudio").get(0).muted = muted;
+    $("#soundtrack").get(0).muted = muted;
 })
 let playingMusic = false;
 $(".playMusic").on("click", () => {
-    if($(".bgAudio").get(0).volume != 0){ return; }
+    if(!$(".bgAudio").get(0).paused){ return; }
     playingMusic = !playingMusic;
     // console.log(playingMusic)
     $(".playMusic").text((playingMusic ? "pause some music..." : "play some music..."));
@@ -275,12 +300,17 @@ if(localStorage.getItem("introed") === "true"){
 } else{ //show intro
     $(".definition").css('visibility','visible');
 }
-
+if ("maxTouchPoints" in navigator && navigator.maxTouchPoints > 0){
+    // is on mobile, default to muted
+    muted = true;
+    $(".mute").text("unmute");
+    $(".bgAudio").get(0).muted = muted;
+    $("#soundtrack").get(0).muted = muted;
+}
 $("#definitionComplete").on('click',() => {
     localStorage.setItem("introed", "true")
-
     $(".madeby").fadeIn(2000, () => {
-        $(".definition").hide()
+        $(".definition").hide();
         setTimeout(() => {
             $(".madeby>h1").fadeIn(2000, () => [
                 setTimeout(() => {
