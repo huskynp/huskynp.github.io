@@ -242,6 +242,7 @@ export class Accordion extends LitElement{
 
     showDialog(){
         $("dialog").css("background-color",$("body").css("background-color"));
+        $("dialog").css("color",$("body").css("background-color"));
         $("dialog > img").attr("src", this.image);
         $("dialog").get(0).showModal();
     }
@@ -307,16 +308,20 @@ if ("maxTouchPoints" in navigator && navigator.maxTouchPoints > 0){
     $(".bgAudio").get(0).muted = muted;
     $("#soundtrack").get(0).muted = muted;
 }
+$("body").css("background-color", "white");
 $("#definitionComplete").on('click',() => {
     localStorage.setItem("introed", "true")
+    $("body").css("background-color", "black");
     $(".madeby").fadeIn(2000, () => {
         $(".definition").hide();
         setTimeout(() => {
             $(".madeby>h1").fadeIn(2000, () => [
                 setTimeout(() => {
                     $(".madeby>h1").fadeOut(1500, () =>{ 
+                        $("body").css("background-color", "white");
                         $(".madeby").fadeOut(2000);
                         $("#projects").css('visibility', 'visible');
+                        $("body").removeClass("twos");
                     })
                 }, 2000)
             ])
