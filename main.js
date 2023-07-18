@@ -19,6 +19,7 @@ const tags = { // [name, color]
     "data": ["data 📒", "grey"],
     "python": ["python 🐍", "black"],
     "net": ["networking 📶", "coral"],
+    "video": ["video editing 🎬", "steelblue"],
 }
 
 const playLobby = (play) => { // called after setTimeout
