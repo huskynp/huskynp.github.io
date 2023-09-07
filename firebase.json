@@ -1,0 +1,7 @@
+{
+	"hosting": {
+		"site": "hriship",
+		"public": "./",
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+	}
+}
