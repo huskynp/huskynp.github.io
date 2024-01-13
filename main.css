@@ -157,7 +157,7 @@ dialog > img{
 
 :root{
     --textColor: black;
-    --bgColor: transparent;
+    --bgColor: rgba(255,255,255,0.15);
 }
 
 .panel{
